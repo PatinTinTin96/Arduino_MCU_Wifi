@@ -8,9 +8,14 @@
 
 ESP8266WebServer server(80); // 80 is the port number
 
-const char* ssid = "VTR-4382214";
-const char* password = "ft8Phhrrw8mx";
+//const char* ssid = "VTR-4382214";
+//const char* password = "ft8Phhrrw8mx";
 
+//const char* ssid = "Familia Aguilar";
+//const char* password = "271386749lol";
+
+const char* ssid = "VTR-0749855";
+const char* password = "mz7dhSghVfg7";
 
 String ledon,ledoff,led1on,led1off;
 
