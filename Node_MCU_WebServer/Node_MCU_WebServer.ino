@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <Servo.h>
 
 #ifdef ESP32
 #pragma message(THIS EXAMPLE IS FOR ESP8266 ONLY!)
@@ -7,9 +8,13 @@
 #endif
 
 ESP8266WebServer server(80); // 80 is the port number
+Servo servoMotor;
 
-const char* ssid = "VTR-4382214";
-const char* password = "ft8Phhrrw8mx";
+const char* ssid = "Familia Soto";
+const char* password = "Marlyn0421";
+
+const char* op = "on";
+const char* cl = "off";
 
 //const char* ssid = "Familia Aguilar";
 //const char* password = "271386749lol";
@@ -20,18 +25,18 @@ const char* password = "ft8Phhrrw8mx";
 //const char* ssid = "PatinTinTin";
 //const char* password = "campanita";
 
-String ledon,ledoff,led1on,led1off;
+String servoon,servooff;
 
 void Redon()
 {
-  digitalWrite(4, HIGH);
-  server.send(200, "text/html", ledon);
+    servoMotor.write(180);
+  server.send(200, "text/html", servoon);
 }
 
 void Redoff()
 {
-  digitalWrite(4, LOW);
-  server.send(200, "text/html", ledoff);
+   servoMotor.write(0);
+  server.send(200, "text/html", servooff);
 }
 
 
@@ -47,17 +52,15 @@ void setup() {
 
 
 
-  server.on("/led1on", Redon);
-  server.on("/led1off", Redoff);
+  server.on(op, Redon);
+  server.on(cl, Redoff);
 
 
   server.begin();
 
-
-  pinMode(4, OUTPUT);//D2
-
-
-  digitalWrite(4, LOW);
+  servoMotor.attach(4);
+  //pinMode(4, OUTPUT);//D2
+  //digitalWrite(4, LOW);
 
 }
 
